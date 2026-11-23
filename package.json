@@ -1,0 +1,11 @@
+{
+  "name": "cedlabs-homepage",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static homepage and project pages for cedlabs.net",
+  "scripts": {
+    "build": "node build.js",
+    "og": "node og.js",
+    "preview": "node build.js && python -m http.server 4173 --bind 127.0.0.1 --directory dist"
+  }
+}
