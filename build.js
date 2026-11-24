@@ -326,6 +326,26 @@ function notFoundPage() {
   });
 }
 
+/* Lists the homepage and every site page. The 404 page is left out. */
+function sitemap() {
+  const urls = ["/", ...sites.map(pageHref)]
+    .map((urlPath) => `  <url><loc>${escapeHtml(SITE_URL + urlPath)}</loc></url>`)
+    .join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
+
+function robots() {
+  return `User-agent: *
+Allow: /
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+}
+
 function write(relativePath, content) {
   const target = path.join(DIST, relativePath);
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -342,5 +362,7 @@ fs.cpSync(OG_DIR, path.join(DIST, "og"), { recursive: true });
 write("index.html", homePage());
 write("404.html", notFoundPage());
 sites.forEach((site) => write(path.join(site.slug, "index.html"), sitePage(site)));
+write("sitemap.xml", sitemap());
+write("robots.txt", robots());
 
-console.log(`Built ${sites.length + 2} pages: /, ${sites.map(pageHref).join(", ")}, /404.html`);
+console.log(`Built ${sites.length + 2} pages: /, ${sites.map(pageHref).join(", ")}, /404.html, plus sitemap.xml and robots.txt`);

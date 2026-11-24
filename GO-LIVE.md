@@ -53,7 +53,7 @@ Each page has a 1200x630 preview image from `dist/og`, with absolute `https://ce
 
 ## Adding a site later
 
-Add one entry to `sites.js`, run `npm run og` to make its preview image, then run `npm run build`. The homepage area, `/<slug>/` page, navigation, footer links and social tags are all generated from it. `npm run og` needs Chrome or Edge on your PC, and the finished images are kept in `src/og`, so the host does not need a browser.
+Add one entry to `sites.js`, run `npm run og` to make its preview image, then run `npm run build`. The homepage area, `/<slug>/` page, navigation, footer links, social tags and sitemap entry are all generated from it. `npm run og` needs Chrome or Edge on your PC, and the finished images are kept in `src/og`, so the host does not need a browser.
 
 ## Worth fixing
 
